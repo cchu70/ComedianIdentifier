@@ -20,7 +20,7 @@ with open('Final CSV  - Sheet1.csv') as file:
             line += 1
 tokenized_data = tokenize_raw_data(data)
 total = 0
-for i in range(100):
+for counter in range(100):
     random.shuffle(tokenized_data)
     feature_sets = []
     for i in tokenized_data:
