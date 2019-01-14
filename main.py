@@ -43,5 +43,5 @@ for counter in range(100):
         if feat[1]:
             feature.add(feat[0])
     total += (nltk.classify.accuracy(classifier, testing_set))*100
-print("Classifier accuracy percent:", total/100)
+print("Classifier accuracy percent:", total/100, '\n')
 print("most informative features", feature)
