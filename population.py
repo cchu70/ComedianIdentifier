@@ -1,9 +1,9 @@
 #this can fill db with data from local file 
 #or restore the data in the database in case someone messes up the db
 import csv
-from dbmanager import DatabaseManager
+from ComedianIdentifier.dbmanager import DatabaseManager
 
-name = 'Final CSV  - Sheet1.csv'
+name = 'textfiles/Final CSV  - Sheet1.csv'
 
 #parse data from csv
 def populate(filename):
