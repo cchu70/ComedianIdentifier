@@ -1,13 +1,14 @@
-Find the Comedian Set-up
+Find the Comedian
 ===================================
 
 Georgia Tech Institute of Technology
 VIP-Humor Genome Project
 ML - Categorization Team
 
-## Python Version
+## Set Up
+### Python Version
 
-### Resources
+## Resources
 
 
 
