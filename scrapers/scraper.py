@@ -1,10 +1,10 @@
 ##automated data scraping
 
-#pip install youtube_transcript_api
+#pip3 install youtube_transcript_api
 from youtube_transcript_api import YouTubeTranscriptApi
 from nltk import word_tokenize, pos_tag
 
-jump_word = ['then', 'and']
+jump_word = ['then', 'and', 'therefore', 'further more', 'which', 'because', 'but']
 
 raw = YouTubeTranscriptApi.get_transcript("Bf0XcgzsPig")
 data = []
