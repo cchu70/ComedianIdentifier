@@ -7,6 +7,7 @@ ML - Categorization Team
 
 ## Set Up
 ### Python Version
+Version 3
 
 ## Resources
 
