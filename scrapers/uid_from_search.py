@@ -16,7 +16,7 @@ def searchKeyword(keyword):
     sel = html.fromstring(h)
 
     uids = []
-    f = open("uid.txt", "w")
+    f = open("uid.txt", "a")
 
     # htmlText = urllib.urlopen(jimmy_fallon_main).read()
     # con = requests.get(jimmy_fallon_main).content.decode('utf-8')
