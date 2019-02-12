@@ -5,7 +5,10 @@ from webdriver_manager.chrome import ChromeDriverManager
 import time
 
 def searchKeyword(keyword):
-    browser = webdriver.Chrome(ChromeDriverManager().install())
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.add_argument('--headless')
+    chrome_options.add_argument('--disable-gpu')
+    browser = webdriver.Chrome(options = chrome_options, executable_path = "/Users/yujia/OneDrive/chromedriver")
     search_url = "https://www.youtube.com/results?search_query={}".format('+'.join(keyword.split()))
     browser.get(search_url)
     js="var q=document.documentElement.scrollTop=100000"
@@ -16,7 +19,7 @@ def searchKeyword(keyword):
     sel = html.fromstring(h)
 
     uids = []
-    f = open("uid.txt", "w")
+    f = open("uid.txt", "a")
 
     # htmlText = urllib.urlopen(jimmy_fallon_main).read()
     # con = requests.get(jimmy_fallon_main).content.decode('utf-8')
