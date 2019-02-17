@@ -6,6 +6,7 @@ import time
 from pymongo import MongoClient
 import logging
 import random
+import os
 
 test_client = MongoClient(
     host='humor1.vip.gatech.edu',
@@ -30,7 +31,8 @@ def searchKeyword(table, keyword):
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_argument('--headless')
     chrome_options.add_argument('--disable-gpu')
-    browser = webdriver.Chrome(options = chrome_options, executable_path = "/Users/yujia/OneDrive/chromedriver")
+    current_dir = os.getcwd()
+    browser = webdriver.Chrome(options = chrome_options, executable_path = f"{current_dir}/chromedriver")
     search_url = "https://www.youtube.com/results?search_query={}".format('+'.join(keyword.split()))
     browser.get(search_url)
     js="var q=document.documentElement.scrollTop=100000"
