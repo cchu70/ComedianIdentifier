@@ -29,11 +29,13 @@ def insert_example(table, id):
 
 
 def searchKeyword(table, keyword):
+    print(keyword)
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_argument('--headless')
     chrome_options.add_argument('--disable-gpu')
     current_dir = os.getcwd()
     browser = webdriver.Chrome(options = chrome_options, executable_path = f"{current_dir}/chromedriver")
+    print(keyword[0])
     search_url = "https://www.youtube.com/results?search_query={}".format('+'.join(keyword[0].split()))
     browser.get(search_url)
     js="var q=document.documentElement.scrollTop=100000"
@@ -52,7 +54,8 @@ def searchKeyword(table, keyword):
     for tag in sel.xpath('//a[@class="yt-simple-endpoint inline-block style-scope ytd-thumbnail"]'):
         # retrieve the video uid
         for i in tag.xpath('@href'):
-            id = uids.append(i.split('=')[1][ :11])
+            id = i.split('=')[1][ :11]
+            print(id)
             if id not in uids:
                 uids.append(id)
                 insert_example(table, id)
