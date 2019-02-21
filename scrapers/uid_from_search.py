@@ -7,6 +7,7 @@ from pymongo import MongoClient
 import logging
 import random
 import os
+import csv
 
 test_client = MongoClient(
     host='humor1.vip.gatech.edu',
@@ -20,7 +21,7 @@ def insert_example(table, id):
 
     table.insert_one({
         'uid': id,
-        'gottenTranscript': true
+        'gottenTranscript': True
     })
     # logger.info('Content after example insert')
     # for record in youtube_table.find():
@@ -33,7 +34,7 @@ def searchKeyword(table, keyword):
     chrome_options.add_argument('--disable-gpu')
     current_dir = os.getcwd()
     browser = webdriver.Chrome(options = chrome_options, executable_path = f"{current_dir}/chromedriver")
-    search_url = "https://www.youtube.com/results?search_query={}".format('+'.join(keyword.split()))
+    search_url = "https://www.youtube.com/results?search_query={}".format('+'.join(keyword[0].split()))
     browser.get(search_url)
     js="var q=document.documentElement.scrollTop=100000"
     browser.execute_script(js)
@@ -63,7 +64,15 @@ def searchKeyword(table, keyword):
     # f.close()
 
 if __name__ == '__main__':
-    logger = logging.getLogger(__name__)
-    youtube_table = test_client['hgp_comedian_monologues']['youtube_monologues_uid']
-    logger.info('Content before example insert')
-    searchKeyword(youtube_table, keyword)
+    current_dir = os.getcwd()
+    print(f"{current_dir}/chromedriver")
+    if len(sys.argv) == 2:
+        with open(sys.argv[1]) as key:
+            logger = logging.getLogger(__name__)
+            youtube_table = test_client['hgp_comedian_monologues']['youtube_monologues_uid']
+            logger.info('Content before example insert')
+            csv_reader = csv.reader(key)
+            for line in csv_reader:
+                searchKeyword(youtube_table, line)
+    else:
+        print("Please give a csv file")
