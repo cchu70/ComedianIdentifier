@@ -1,4 +1,4 @@
-Find the Comedian
+Find the Comedian[Deprecated Moved to Gatech Github]
 ===================================
 
 Georgia Tech Institute of Technology
