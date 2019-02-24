@@ -17,11 +17,12 @@ test_client = MongoClient(
     authSource='hgp_comedian_monologues',
     authMechanism='SCRAM-SHA-1'
 )
-def insert_example(table, id):
+def insert_example(table, id, name):
 
     table.insert_one({
         'uid': id,
-        'gottenTranscript': True
+        'comedianName': name
+        'gottenTranscript': False
     })
     # logger.info('Content after example insert')
     # for record in youtube_table.find():
@@ -36,11 +37,11 @@ def searchKeyword(table, keyword):
     current_dir = os.getcwd()
     browser = webdriver.Chrome(options = chrome_options, executable_path = f"{current_dir}/chromedriver")
     print(keyword[0])
-    search_url = "https://www.youtube.com/results?search_query={}".format('+'.join(keyword[0].split()))
+    search_url = "https://www.youtube.com/results?search_query={}".format('+'.join(keyword[0].split())+'+Monologues')
     browser.get(search_url)
     js="var q=document.documentElement.scrollTop=100000"
     browser.execute_script(js)
-    time.sleep(20)
+    time.sleep(15)
 
     h = browser.page_source
     sel = html.fromstring(h)
@@ -58,7 +59,7 @@ def searchKeyword(table, keyword):
             print(id)
             if id not in uids:
                 uids.append(id)
-                insert_example(table, id)
+                insert_example(table, id, keyword[0])
 
     # print(uids)
     # for i in uids:
