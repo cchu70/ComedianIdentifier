@@ -8,20 +8,21 @@ import logging
 import random
 import os
 import csv
+from lib import test_client
 
-test_client = MongoClient(
-    host='humor1.vip.gatech.edu',
-    port=3306,
-    username='comedian_monologues',
-    password='BlENteRsEWROmbERaInG',
-    authSource='hgp_comedian_monologues',
-    authMechanism='SCRAM-SHA-1'
-)
+# test_client = MongoClient(
+#     host='humor1.vip.gatech.edu',
+#     port=3306,
+#     username='comedian_monologues',
+#     password='BlENteRsEWROmbERaInG',
+#     authSource='hgp_comedian_monologues',
+#     authMechanism='SCRAM-SHA-1'
+# )
 def insert_example(table, id, name):
 
     table.insert_one({
         'uid': id,
-        'comedianName': name
+        'comedianName': name,
         'gottenTranscript': False
     })
     # logger.info('Content after example insert')
